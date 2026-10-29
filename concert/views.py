@@ -32,7 +32,8 @@ def index(request):
 def songs(request):
     response = req.get(os.environ.get('SONGS_URL', 'http://127.0.0.1:5001') + '/song', timeout=10)
     response.raise_for_status()
-    return render(request, 'songs.html', {'songs': response.json()})
+    data = response.json()
+    return render(request, 'songs.html', {'songs': data.get('songs', []) if isinstance(data, dict) else data})
 
 
 def photos(request):
