@@ -38,7 +38,10 @@ def songs(request):
 def photos(request):
     response = req.get(os.environ.get('PICTURES_URL', 'http://127.0.0.1:5000') + '/picture', timeout=10)
     response.raise_for_status()
-    return render(request, 'photos.html', {'photos': response.json()})
+    photos = response.json()
+    if request.GET.get('id'):
+        photos = [photo for photo in photos if str(photo['id']) == request.GET['id']]
+    return render(request, 'photos.html', {'photos': photos})
 
 
 def login_view(request):
