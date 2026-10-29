@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'local-development-only-change-
 DEBUG = os.environ.get('DJANGO_DEBUG', '1') == '1'
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,.cognitiveclass.ai').split(',')
-CSRF_TRUSTED_ORIGINS = ['https://*.cognitiveclass.ai']
+CSRF_TRUSTED_ORIGINS = ['https://*.cognitiveclass.ai', 'https://*.appdomain.cloud']
 
 # Application definition
 
